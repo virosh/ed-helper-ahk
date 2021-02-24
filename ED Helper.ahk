@@ -55,7 +55,8 @@ if not WinExist("ahk_exe EDLaunch.exe")
   Run % EDL_bin, % EDL_WD
 
 ; Run the joyfocus script. Please note that this script may require separate configuration!
-Run joyfocus.ahk
+; Remove the comment to enable this script only after downloading it in the same directory!
+; Run joyfocus.ahk
 
 ; This will handle the clouse of this script once the Elite Dangerous game client is closed.
 WinWaitActive, Elite - Dangerous (CLIENT)
