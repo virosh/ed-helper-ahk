@@ -29,17 +29,17 @@ EDL_WD := "E:\EDLaunch"
 OnExit("KillJoy")
 KillJoy(ExitReason, ExitCode)
 {
-	DetectHiddenWindows, On
-	SetTitleMatchMode, 2
+  DetectHiddenWindows, On
+  SetTitleMatchMode, 2
 
-	if WinExist("joyfocus")
-        WinClose ; Try to exit gracefully.
+  if WinExist("joyfocus")
+    WinClose ; Try to exit gracefully.
 	
-	Sleep 1000 ; Wait for the window to close.
+  Sleep 1000 ; Wait for the window to close.
 	
-	if WinExist("joyfocus")
-        WinKill ; If the above did not work - kill it.
-	return
+  if WinExist("joyfocus")
+    WinKill ; If the above did not work - kill it.
+  return
 }
 
 ; Check and start the needed programs.
