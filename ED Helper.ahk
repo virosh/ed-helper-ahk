@@ -63,9 +63,10 @@ WinWaitActive, Elite - Dangerous (CLIENT)
   WinWaitClose, Elite - Dangerous (CLIENT)
     ExitApp
  
-; Buttons mapping on MongoosT-50CM3 Throttle at Mode 5:
+; Buttons mapping on My MongoosT-50CM3 Throttle at Mode 5:
 ; B1 = , B2 = . B3 = /
 ; B4 = F1 B5 = F2 B6 = F3
+; Please note that your mappings will probably be different. You will need to find and use the correct ones.
 ; You will need to change the keys/combinations below according to your setup.
 ; Unfortunately this cannot be done with variables. Due to that it is not in the settings above.
 #IfWinActive ahk_exe EliteDangerous64.exe
