@@ -30,6 +30,7 @@ used for one joystick. That's the new `Hardpoints.ahk` scrript.
 
 v1.0
   * Initial release
+  
 v1.1
   * Added support for [AHK-EDToggle](https://github.com/markus-i/AHK-EDToggle) integration.
   * Added `Hardpoints.ahk` script based on AHK-EDToggle.
