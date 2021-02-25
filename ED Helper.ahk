@@ -41,10 +41,10 @@ KillScripts(ExitReason, ExitCode)
 {
 	; Handle the joyfocus.ahk script.
 	if WinExist("joyfocus")
-        WinClose ; Try to exit gracefully.
+		WinClose ; Try to exit gracefully.
 	Sleep 1000 ; Wait for the window to close.
 	if WinExist("joyfocus")
-        WinKill ; If the above did not work - kill it.
+		WinKill ; If the above did not work - kill it.
 	; Handle the readstatus.ahk script.
 	if WinExist("readstatus")
 		Send ^{x}
