@@ -15,7 +15,7 @@
 ;#Warn                              ; Enable warnings to assist with detecting common errors.
 #SingleInstance force              ; Make sure only one instance of this script is running.
 SendMode Input                     ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir C:\AHK\scripts       ; Set this to your scripts directory.
+SetWorkingDir G:\AHK\scripts       ; Set this to your scripts directory.
 #Include JSON.ahk
 
 ;yes, all these need to be global
@@ -137,15 +137,20 @@ checkHardpoints(flipstate)
 
 ;initialize: read out current flags and button states, send commands if they don't match
 SetKeyDelay, 10, 20		; ED needs some delay between keys and some tangible duration. So far, these values work on my rig
-GetEDStatus()
-oldEDFlags := EDFlags
-checkHardpoints(GetKeyState("3Joy1"))
-;MsgBox, % "EDFlags = " . EdFlags
-setTimer, WaitForStatusChange, 100			; start monitoring status.json for changes
+
+^x::ExitApp ; This needs to be initialized before the loop or it will not work.
+
+WinWaitActive, Elite - Dangerous (CLIENT) ; Wait until ED is started and initialize.
+	GetEDStatus()
+	oldEDFlags := EDFlags
+	checkHardpoints(GetKeyState("3Joy1"))
+	;MsgBox, % "EDFlags = " . EdFlags
+	setTimer, WaitForStatusChange, 100			; start monitoring status.json for changes
 
 ;now run the loop
 
 ; 3joy1 is the flip switch on the right stick -> hardpoints
+#IfWinActive Elite - Dangerous (CLIENT)
 3Joy1::
 	;MsgBox, 3Joy1 up
 	checkHardpoints(1)
@@ -154,6 +159,8 @@ setTimer, WaitForStatusChange, 100			; start monitoring status.json for changes
 
 ; flip is up -> poll status
 WaitForHardpointsDn:
+	if not WinActive("Elite - Dangerous (CLIENT)") ; ED client is not on focus, do nothing.
+		return
 	if (GetKeyState("3joy1"))	; trigger still up, do nothing
 		return
 	; flip trigger is down
@@ -165,12 +172,11 @@ WaitForHardpointsDn:
 ; monitor status.json for change - since we're only checking the flags right now, I use the flags as cnage indicator
 ; may need to switch to include other indicators if necessary - timestamp only has a one second resolution	
 WaitForStatusChange:
+	if not WinActive("Elite - Dangerous (CLIENT)") ; ED client is not on focus, do nothing.
+		return
 	GetEDStatus()
 	if( oldEDFlags == EDFlags )
 		return						; nothing changed
 	checkHardpoints(GetKeyState("3Joy1"))
 	oldEDFlags := EDFlags
 	return
-	
-; don't forget this - AHK is otherwise rather clingy
-^x::ExitApp	
