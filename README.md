@@ -24,7 +24,7 @@ As a bonus i found the [JoyFocus](https://github.com/RetroRodent/joyfocus) scrip
 
 I also found the [AHK-EDToggle](https://github.com/markus-i/AHK-EDToggle) script which makes use of the flip trigger on ALPHA grips and binds it as a Hardpoints deploy/retract or/and Combat/Analysis mode switch.
 The EDToggle script is probably more usefull for players with HOSAS (two joysticks) setup. However the flip trigger functionality for me is a very good addition so i modified the script a little to be 
-used for one joystick. That's the new `Hardpoints.ahk` scrript.
+used for one joystick. That's the new `Hardpoints.ahk` script.
 
 ## History
 
