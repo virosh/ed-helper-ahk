@@ -58,6 +58,25 @@ global AvgAltitude  := 0
 global FsdJump		:= 0
 global SRVHighBeam  := 0
 
+global AimDownSight := 0
+global Breathable := 0
+global Cold := 0
+global GlideMode := 0
+global Hot := 0
+global InMulticrew := 0
+global InTaxi := 0
+global LowHealth := 0
+global LowOxygen := 0
+global OnFoot := 0
+global OnFootExterior := 0
+global OnFootInHanger := 0
+global OnFootInStation := 0
+global OnFootOnPlanet := 0
+global OnFootSocialSpace := 0
+global VeryCold := 0
+global VeryHot := 0
+global EDGuiFocus := 0
+
 ; read out ED's Status.json and (for now) extract the flag bits. There's more useful information in that file,
 ; see https://elite-journal.readthedocs.io/en/latest/Status%20File/ - I just don't know what else I could/should use
 GetEDStatus()
@@ -97,6 +116,24 @@ GetEDStatus()
 	AvgAltitude := EDStatus.Flags & 0x20000000
 	FsdJump		:= EDStatus.Flags & 0x40000000
 	SRVHighBeam := EDStatus.Flags & 0x80000000
+	
+    	OnFoot := EDStatus.Flags & 0x0001
+    	InTaxi := EDStatus.Flags & 0x0002
+    	InMulticrew := EDStatus.Flags & 0x0004
+    	OnFootInStation := EDStatus.Flags & 0x0008
+    	OnFootOnPlanet := EDStatus.Flags & 0x0010
+    	AimDownSight := EDStatus.Flags & 0x0020
+    	LowOxygen := EDStatus.Flags & 0x0040
+    	LowHealth := EDStatus.Flags & 0x0080
+    	Cold := EDStatus.Flags & 0x0100
+    	Hot := EDStatus.Flags & 0x0200
+    	VeryCold := EDStatus.Flags & 0x0400
+    	VeryHot := EDStatus.Flags & 0x0800
+    	GlideMode := EDStatus.Flags & 0x1000
+    	OnFootInHanger := EDStatus.Flags & 0x2000
+    	OnFootSocialSpace := EDStatus.Flags & 0x4000
+    	OnFootExterior := EDStatus.Flags & 0x8000
+    	Breathable := EDStatus.Flags & 0x00010000
 	
 	EDFlags := EDStatus.Flags
 }
